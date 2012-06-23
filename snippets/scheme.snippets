@@ -1,104 +1,36 @@
-# binding
-
 snippet lam
 	(lambda (${1:formals})
-		(${2:exp}))
-
-# local binding
-
-snippet let one declaration
+		${2:body})
+snippet cl
+	(case-lambda
+	  ((${1:first})
+	   ${2:body}))
+snippet let
 	(let ((${1:name} ${2:declaration}))
 		${3:body})
-snippet let two declarations
-	(let ((${1:name1} ${2:declaration1})
-				(${3:name2} ${4:declaration2}))
-		${5:body})
-snippet let three declarations
-	(let ((${1:name1} ${2:declaration1})
-				(${3:name2} ${4:declaration2})
-				(${5:name3} ${6:declaration3}))
-		${7:body})
-
-# variable definitions
-
-snippet def regular
+snippet def
 	(define (${1:name} ${2:args})
 		${3:code})
-snippet def lambda
-	(define ${1:name}
-		(lambda (${2:args})
-			${3:code}))
-
-# procedure application
-snippet proc
-	(${1:procedure} ${2:args})
-
 snippet beg
-	(begin${1:exp1} ${2:exp2})
-	
-# Conditionals
-snippet if simple
-	(if ${1:conditional} ${2:true})
-snippet if alternative
-	(if ${1:conditional} ${2:true} ${3:false})
-
+	(begin
+	  ${1:body})
+snippet if
+	(if ${1:conditional}
+	    ${2:true}
+			${3:false})
 snippet cond
 	(cond 
-		((${1:condition1}) (${2:code1}))
-		((${3:condition2}) (${4:code2}))
+		((${1:condition1}) ${2:body})
+		((${3:condition2}) ${4:body})
 		(else (${5:else})))
-
 snippet case
 	(case ${1:exp0}
-		((${2:kea}y) ${3:exp1})
-		((${4:key})  ${5:exp1})
+		((${2:key}) ${3:body})
+		((${4:key}) ${5:body})
 		(else)  ${6:exp1} exp2)
-
-# boolean tests
-snippet eq eq?
-	(eq? (${1:s-exp}) (${2:s-exp}))
-snippet eq eqv?
-	(eqv? (${1:s-exp}) (${2:s-exp}))
-snippet eq equal?
-	(equal? (${1:s-exp}) (${2:s-exp}))
-
-snippet test procedure?
-	(procedure? ${1:exp})
-snippet test boolean?
-	(boolean? ${1:exp})
-snippet test null?
-	(null? ${1:exp})
-snippet test pair?
-	(pair? ${1:exp})
-snippet test number?
-	(number? ${1:exp})
-snippet test complex?
-	(complex? ${1:exp})
-snippet test real?
-	(real? ${1:exp})
-snippet test rational?
-	(rational? ${1:exp})
-snippet test complex?
-	(complex? ${1:exp})
-snippet test char?
-	(char? ${1:exp})
-snippet test string?
-	(string? ${1:exp})
-snippet test vector?
-	(vector? ${1:exp})
-snippet test synbol?
-	(synbol? ${1:exp})
-
-snippet and
-	(and (${1:s-exp}) (${2:s-exp}))
-
-snippet or
-	(or (${1:s-exp}) (${2:s-exp}))
-
-snippet no
-	(not (${1:obj}))
-
-snippet call
+snippet cc
 	(call/cc
 		(lambda (k)
-			${1:code}))
+			${1:body}))
+snippet param
+	(define ${1:name} (make-parameter ${2:value}))
